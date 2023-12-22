@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HyStart</title>
+    <style>
+        @font-face {
+            font-family: 'JSFont';
+            src: url('js.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'JSFont', 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: url('1.png') center/cover no-repeat;
+            color: #ffffff; /* 文字颜色为白色，以适应背景 */
+            transition: backdrop-filter 0.5s; /* 添加模糊过渡效果 */
+        }
+
+        #content {
+            text-align: center;
+            transition: opacity 0.5s; /* 添加透明度过渡效果 */
+        }
+
+        #main-title {
+            font-family: 'JSFont', 'Arial', sans-serif;
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 5px; /* 调小标题和搜索栏的间距 */
+            transition: opacity 0.5s; /* 添加透明度过渡效果 */
+        }
+
+        #search-box {
+            border: 8px solid #fff; /* 白色线条轮廓 */
+            border-radius: 50px; /* 圆角最大 */
+            padding: 15px;
+            font-size: 16px;
+            background-color: transparent; /* 透明背景 */
+            color: #fff; /* 文字颜色为白色 */
+            margin-top: 20px;
+            width: 300px;
+            outline: none; /* 移除默认的轮廓效果 */
+            transition: transform .4s; /* 添加动画过渡效果 */
+        }
+
+        #search-box::placeholder {
+            color: #fff; /* 占位符文字颜色为白色 */
+        }
+
+        #search-box:focus {
+            transform: translateY(-50px); /* 点击搜索框时向上移动50px */
+        }
+
+        #copyright {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 14px;
+            transition: opacity 0.5s; /* 添加透明度过渡效果 */
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <div id="main-title">HyStart</div>
+        <form action="https://www.bing.com/search" method="GET" target="_blank">
+            <input type="text" id="search-box" name="q" placeholder="搜索...">
+        </form>
+    </div>
+
+    <div id="copyright">
+        &copy; 2020-2024 Gebit Qwin
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var searchBox = document.getElementById('search-box');
+            var mainTitle = document.getElementById('main-title');
+
+            searchBox.addEventListener('focus', function () {
+                mainTitle.style.opacity = 0; /* 输入框聚焦时隐藏标题 */
+                body.style.backdropFilter = 'blur(10px)'; /* 聚焦时背景模糊 */
+                body.style.background = 'url("2.png") center/cover no-repeat'; /* 更改背景图片为2.png */
+            });
+
+            searchBox.addEventListener('blur', function () {
+                mainTitle.style.opacity = 1; /* 输入框失焦时显示标题 */
+                body.style.backdropFilter = 'none'; /* 失焦时取消背景模糊 */
+                body.style.background = 'url("1.png") center/cover no-repeat'; /* 恢复背景图片为1.png */
+            });
+        });
+    </script>
+</body>
+</html>
